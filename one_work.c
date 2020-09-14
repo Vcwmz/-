@@ -1,4 +1,6 @@
 #include<iostream>
+#include<fstream>
+#include<string>
 using namespace std;
 
 typedef struct Item_set
@@ -16,6 +18,34 @@ typedef struct Node{
     struct Node *rchild = NULL;
 }Node;//增加一个 *Node_p 替换 Node *T试试。
 
+void preworks()
+{
+    Item_set sets[15];
+    ifstream afile("c:\\Users\\30931\\Desktop\\sets.txt");
+    const int len = 4;
+    int j,i;
+    char data[len];
+    int w=0;
+    while(w!=15){
+         afile.getline(data,len);
+
+
+                sets[w].item[0]=(int)data[0]-48;
+                sets[w].item[1]=(int)data[1]-48;
+                sets[w].item[2]=(int)data[2]-48;
+
+             w++;
+    }
+
+    for(j=0;j<15;j++)
+    {
+        for(i=0;i<3;i++)
+          cout<<sets[j].item[i];
+        cout<<endl;
+    }
+
+
+}
 void insert_operation(Node *T,Item_set i)
 {
 
@@ -150,22 +180,27 @@ void insert_operation(Node *T,Item_set i)
 }
 int main()
 {
-    Item_set a[15];
-    a[0].item[0]=1; a[0].item[1]=4;a[0].item[2]=5;  a[1].item[0]=1;a[1].item[1]=2;a[1].item[2]=4;   a[2].item[0]=4;a[2].item[1]=5;a[2].item[2]=7;
-    a[3].item[0]=1;a[3].item[1]=2;a[3].item[2]=5;   a[4].item[0]=4;a[4].item[1]=5;a[4].item[2]=8;a[5].item[0]=1;a[5].item[1]=5;a[5].item[2]=9;
-    a[6].item[0]=1;a[6].item[1]=3;a[6].item[2]=6;a[7].item[0]=2;a[7].item[1]=3;a[7].item[2]=4;a[8].item[0]=5;a[8].item[1]=6;a[8].item[2]=7;
-    a[9].item[0]=3;a[9].item[1]=4; a[9].item[2]=5;a[10].item[0]=3;a[10].item[1]=5;a[10].item[2]=6;a[11].item[0]=3;a[11].item[1]=5;a[11].item[2]=7;
-    a[12].item[0]=6;a[12].item[1]=8;a[12].item[2]=9;a[13].item[0]=3;a[13].item[1]=6;a[13].item[2]=7;a[14].item[0]=3;a[14].item[1]=6;a[14].item[2]=8;
+    Item_set sets[15];
+    ifstream afile("c:\\Users\\30931\\Desktop\\sets.txt");
+    const int len = 4;
+    int j,i;
+    char data[len];
+    int w=0;
+    while(w!=15){
+         afile.getline(data,len);
+
+
+                sets[w].item[0]=(int)data[0]-48;
+                sets[w].item[1]=(int)data[1]-48;
+                sets[w].item[2]=(int)data[2]-48;
+
+             w++;
+    }
 
     Node *T = (Node *)malloc(sizeof(Node));
     T->rchild=NULL;
     for(int i=0;i<15;i++)
-    insert_operation(T,a[i]);
-
-
-    for(int j =0;j<2;j++)
-    cout<<T->rchild->rchild->i[j].item[0]<<T->rchild->rchild->i[j].item[1]<<T->rchild->rchild->i[j].item[2]<<" ";
-
+    insert_operation(T,sets[i]);
     return 0;
 
 }
